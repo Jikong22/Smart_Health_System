@@ -31,22 +31,61 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* [수정됨] 메인 컨테이너 크기 확대 (width 95%, height 90%) */
+/* [수정] 모든 기기에서 화면에 꽉 차게 고정 */
 .glass-container {
   display: flex;
-  width: 95vw;          /* 너비 키움 */
-  height: 90vh;         /* 높이 키움 */
-  max-width: 1400px;    /* 최대 너비 제한 해제 */
-  gap: 30px;
+  width: 98vw;          /* 가로 98% */
+  height: 96vh;         /* 세로 96% */
+  max-width: 1600px;    /* 너무 커지는 것 방지 */
+  max-height: 1000px;   /* 너무 길어지는 것 방지 */
+  gap: 20px;
   align-items: center;
+  margin: auto;         /* 화면 중앙 정렬 */
   z-index: 1;
 }
 
-/* 왼쪽 패널 */
-.left-panel {
-  flex: 0.7; /* 비율 조정 */
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+/* 스탠바이미 같은 세로형 기기 대응 (미디어 쿼리) */
+@media (max-aspect-ratio: 1/1) {
+  .glass-container {
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+  .left-panel {
+    flex: 0.3; /* 인원수 위젯 비율 축소 */
+    width: 100%;
+  }
+  .right-panel {
+    flex: 0.7;
+    width: 100%;
+    border-radius: 40px 40px 0 0;
+  }
 }
+
+/* [수정] 왼쪽 패널 정렬 조정 */
+.left-panel {
+  flex: 0.75; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* 중앙(center)에서 상단(flex-start) 정렬로 변경 */
+  margin-top: -100px;          /* 위쪽에서 얼마나 떨어질지 결정 (수치로 높이 조절 가능) */
+}
+
+/* [수정] 타이틀 영역 여백 조정 */
+.left-footer {
+  margin-top: 0;              /* 위쪽 여백 제거 */
+  margin-bottom: 20px;        /* 위젯과의 간격 조절 */
+  font-size: 1.1rem;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* [참고] 위젯 위치는 .left-panel의 padding-top과 .left-footer의 margin-bottom으로 조절됩니다. */
 .circle-widget {
   width: 280px; height: 280px; /* 위젯 크기 약간 확대 */
   background: rgba(255, 255, 255, 0.4);
