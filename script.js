@@ -45,7 +45,8 @@ async function submitLog() {
     const stName = document.getElementById('stName').value;
 
     const submitBtn = document.getElementById('submit-btn');
-    setTimeout(() => { submitBtn.disabled = true; }, 3000);
+    submitBtn.disabled = true;
+    setTimeout(() => { submitBtn.disabled = false; }, 3000);
     
     // 라디오 버튼 값 읽기
     const food = document.querySelector('input[name="food"]:checked')?.value === 'true';
@@ -217,7 +218,7 @@ async function init() {
         } else {
             infoDiv.innerHTML = `
                 <h1 class="widget-number" style="color:#000000; font-size:80px; margin:10;">0명</h1>
-                <p style="font-size:0.9rem; margin-top:5px; color:#000000 ; font-weight:bold;">바로 진료 가능</p>
+                <p style="font-size:1.3rem; margin-top:5px; color:#000000 ; font-weight:bold;">바로 진료 가능</p>
             `;
         }
     }

@@ -59,8 +59,8 @@
       </div>
 
       <div id="view-student" class="view hidden">
-        <div class="view-header">
-          <h3><i class="fa-solid fa-notes-medical"></i> 방문 기록지 작성</h3>
+        <div style="margin-bottom: -20px; margin-top: -20px;" class="view-header">
+          <h3><i style="font-size: 35px;" class="fa-solid fa-notes-medical"></i> 방문 기록지 작성</h3>
         </div>
         
         <div class="scroll-content">
@@ -96,11 +96,11 @@
                 <option value="기타">📝기타</option>
               </select>
             </div>
-            <textarea id="stDetail" rows="3" placeholder="구체적인 증상을 적어주세요"></textarea>
+            <textarea style="margin-top: 10px;" id="stDetail" rows="3" placeholder="구체적인 증상을 적어주세요"></textarea>
           </div>
         </div>
 
-        <div class="action-buttons">
+        <div style="margin-top: 10px; margin-bottom: -15px;" class="action-buttons">
           <button id="submit-btn" class="btn-primary" onclick="submitLog()">접수 완료</button>
           <button class="btn-secondary" onclick="showView('view-login')">취소</button>
         </div>
