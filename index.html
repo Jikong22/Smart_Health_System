@@ -17,7 +17,7 @@
         <p style="font-size: 3rem; position: relative; margin-bottom: 5px;">
           <i style="margin-bottom: 10px;" class="fa-solid fa-school"></i> 스마트 보건실
         </p>
-         <p style="font-size: 1.7rem; opacity: 0.8; text-align: center; margin-top: 0;">By Coding_Class</p>
+         <p style="color:rgb(37, 36, 36); font-size: 1.7rem; font-weight: bold; opacity: 0.8; text-align: center; margin-top: 0;">By Coding_Class</p>
       </div>
 
       <div class="circle-widget">
@@ -65,7 +65,7 @@
         
         <div class="scroll-content">
           <div class="input-group">
-            <input type="text" id="stId" placeholder="학번 (예: 10203)" />
+            <input type="text" id="stId" placeholder="학번 (예: 10101)" />
             <input type="text" id="stName" placeholder="이름" />
           </div>
 
@@ -86,7 +86,7 @@
           </div>
 
           <div class="section-group">
-            <p class="label">증상 선택</p>
+            <p class="label">증상</p>
             <div class="select-wrapper">
               <select id="stCat">
                 <option value="감기/발열">🤒감기 / 발열</option>
@@ -101,7 +101,7 @@
         </div>
 
         <div class="action-buttons">
-          <button class="btn-primary" onclick="submitLog()">접수 완료</button>
+          <button id="submit-btn" class="btn-primary" onclick="submitLog()">접수 완료</button>
           <button class="btn-secondary" onclick="showView('view-login')">취소</button>
         </div>
       </div>

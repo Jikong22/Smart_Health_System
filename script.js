@@ -43,6 +43,9 @@ function showView(viewId) {
 async function submitLog() {
     const stId = document.getElementById('stId').value;
     const stName = document.getElementById('stName').value;
+
+    const submitBtn = document.getElementById('submit-btn');
+    setTimeout(() => { submitBtn.disabled = true; }, 3000);
     
     // 라디오 버튼 값 읽기
     const food = document.querySelector('input[name="food"]:checked')?.value === 'true';
@@ -208,14 +211,12 @@ async function init() {
         const infoDiv = document.getElementById('main-wait-info');
         if (count > 0) {
             infoDiv.innerHTML = `
-                <h1 class="widget-number">${count}</h1>
-                <p class="widget-unit">명</p>
-                <p style="font-size:0.9rem; margin-top:5px; color:#555;">(약 ${totalMinutes}분 대기)</p>
+                <h1 style="font-size: 80px; margin:10;" class="widget-number">${count}명</h1>
+                <p style="font-size:1.3rem; margin-top:5px; color:#555;">(약 ${totalMinutes}분 대기)</p>
             `;
         } else {
             infoDiv.innerHTML = `
-                <h1 class="widget-number" style="color:#000000;">0</h1>
-                <p class="widget-unit">명</p>
+                <h1 class="widget-number" style="color:#000000; font-size:80px; margin:10;">0명</h1>
                 <p style="font-size:0.9rem; margin-top:5px; color:#000000 ; font-weight:bold;">바로 진료 가능</p>
             `;
         }
