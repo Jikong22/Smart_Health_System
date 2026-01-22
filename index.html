@@ -48,7 +48,7 @@
             <span>학생 접수</span>
           </button>
 
-          <button class="app-icon-btn admin" onclick="adminLogin()">
+          <button class="app-icon-btn admin" onclick="showView('view-teacher-login')">
             <div class="icon-box">
               <i class="fa-solid fa-user-doctor"></i>
             </div>
@@ -90,7 +90,7 @@
               <select id="stCat">
                 <option value="감기/발열">🤒감기 / 발열</option>
                 <option value="두통">🤕두통</option>
-                <option value="복통/소화불량">🤢복통</option>
+                <option value="복통">🤢복통</option>
                 <option value="외상(상처)">🩹외상 (상처)</option>
                 <option value="기타">📝기타</option>
               </select>
@@ -132,6 +132,15 @@
         </div>
       </div>
 
+      <div id="view-teacher-login" class="view hidden">
+        <div class="view-header">
+          <h2>로그인</h2>
+        </div>
+        <input style="margin-top: 20px;" type="password" id="pw" placeholder="●●●●" maxlength="4" />
+        <button style="margin-top: 40px; background-color: #007AFF; color: white;" onclick="adminLogin()">로그인</button>
+        <button style="position: fixed; top: 60px; right: 20px;" onclick="location.reload()" class="icon-btn" title="로그아웃"><i class="fa-solid fa-right-from-bracket"></i></button>
+      </div>
+      
     </div> 
   </div> 
   <script src="script.js"></script>

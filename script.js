@@ -11,7 +11,7 @@ const _supabase = supabase.createClient(SB_URL, SB_KEY);
 const TIME_WEIGHTS = {
     '감기/발열': 5,
     '두통': 5,
-    '복통/소화불량': 10,
+    '복통': 10,
     '외상(상처)': 7,
     '기타': 3
 };
@@ -66,7 +66,7 @@ async function submitLog() {
     if (error) {
         alert("오류 발생: " + error.message);
     } else {
-        alert("접수 완료! 자리에 앉아 대기해주세요.");
+        alert("접수 완료! 잠시 대기해주세요.");
         // 초기화 및 이동
         document.getElementById('stId').value = '';
         document.getElementById('stName').value = '';
@@ -138,6 +138,8 @@ async function completeLog(id) {
 // 7. 관리자 로그인
 // ============================================================
 async function adminLogin() {
+    const pwInput = document.getElementById('pw');
+    const inputPw = pwInput.value;
     const { data, error } = await _supabase.from("login").select("*").eq("id", 1).single();
     
     if (error || !data) {
@@ -145,7 +147,6 @@ async function adminLogin() {
         return;
     }
 
-    const inputPw = prompt("관리자 비밀번호를 입력하세요.");
     if (inputPw === data.password) {
         showView('view-admin');
     } else if (inputPw !== null) {
@@ -213,9 +214,9 @@ async function init() {
             `;
         } else {
             infoDiv.innerHTML = `
-                <h1 class="widget-number" style="color:#34C759;">0</h1>
+                <h1 class="widget-number" style="color:#000000;">0</h1>
                 <p class="widget-unit">명</p>
-                <p style="font-size:0.9rem; margin-top:5px; color:#34C759; font-weight:bold;">바로 진료 가능</p>
+                <p style="font-size:0.9rem; margin-top:5px; color:#000000 ; font-weight:bold;">바로 진료 가능</p>
             `;
         }
     }
