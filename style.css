@@ -1,0 +1,160 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+:root {
+  --ios-blue: #007AFF;
+  --ios-green: #34C759;
+  --text-dark: #1c1c1e;
+}
+
+* { box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+
+body {
+  margin: 0; height: 100vh;
+  display: flex; justify-content: center; align-items: center;
+  overflow: hidden; color: var(--text-dark);
+}
+
+/* 배경 오로라 */
+.background-gradient {
+  position: fixed; inset: 0;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite; z-index: -2;
+}
+.background-gradient::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(30px); z-index: -1;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* [수정됨] 메인 컨테이너 크기 확대 (width 95%, height 90%) */
+.glass-container {
+  display: flex;
+  width: 95vw;          /* 너비 키움 */
+  height: 90vh;         /* 높이 키움 */
+  max-width: 1400px;    /* 최대 너비 제한 해제 */
+  gap: 30px;
+  align-items: center;
+  z-index: 1;
+}
+
+/* 왼쪽 패널 */
+.left-panel {
+  flex: 0.7; /* 비율 조정 */
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.circle-widget {
+  width: 280px; height: 280px; /* 위젯 크기 약간 확대 */
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  animation: floatWidget 6s ease-in-out infinite;
+}
+@keyframes floatWidget {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.widget-content { text-align: center; }
+.widget-title { font-size: 1.6rem; margin: 0; opacity: 0.7; }
+.widget-number { font-size: 6rem; font-weight: 700; margin: 0; line-height: 1; color: #333; }
+.widget-unit { font-size: 1.5rem; margin: 0; opacity: 0.7; }
+
+/* 날씨 위젯 */
+.weather-pill {
+  margin-top: 30px; display: flex; align-items: center; gap: 12px;
+  background: rgba(255, 255, 255, 0.5); padding: 12px 24px;
+  border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.8);
+  font-weight: 600; color: #444;
+}
+.left-footer { margin-top: 20px; font-size: 1.1rem; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+
+/* [수정됨] 오른쪽 패널 (아이패드 느낌) */
+.right-panel {
+  flex: 1.3; /* 공간 더 차지하게 */
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40px);
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  padding: 50px; /* 내부 여백 확대 */
+  position: relative; overflow: hidden;
+}
+
+/* 화면 전환 애니메이션 */
+.view {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  padding: 50px; /* 패딩 확대 */
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none; transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.view.active { opacity: 1; pointer-events: all; transform: scale(1); z-index: 10; }
+.view-header h3 { font-size: 2rem; margin: 0 0 30px 0; }
+.view-header.row { display: flex; justify-content: space-between; align-items: center; }
+
+/* 앱 그리드 */
+.app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: auto 0; }
+.app-icon-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+.app-icon-btn:active { transform: scale(0.95); }
+.icon-box {
+  width: 360px; height: 360px; /* 아이콘 크기 확대 */
+  border-radius: 30px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 160px; color: white;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+.app-icon-btn.student .icon-box { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+.app-icon-btn.admin .icon-box { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.app-icon-btn span { font-size: 1.2rem; font-weight: 600; color: #333; }
+
+/* 입력 폼 스타일 */
+.scroll-content { flex: 1; overflow-y: auto; padding-right: 10px; }
+.input-group { display: flex; gap: 15px; margin-bottom: 25px; }
+input, select, textarea {
+  width: 100%; padding: 16px; border: 1px solid transparent;
+  background: #f2f2f7; border-radius: 16px;
+  font-size: 1.1rem; outline: none; transition: 0.2s; color: #333;
+}
+textarea { min-height: 120px; resize: none; } /* 입력창 높이 확대 */
+input:focus, textarea:focus, select:focus { background: #fff; box-shadow: 0 0 0 3px var(--ios-blue); }
+.label { font-weight: 700; margin: 20px 0 10px; font-size: 1.1rem; color: #555; }
+
+.segment-control { display: flex; background: #e5e5ea; padding: 5px; border-radius: 14px; }
+.segment-control label { flex: 1; position: relative; cursor: pointer; }
+.segment-control input { display: none; }
+.segment-control span { display: block; text-align: center; padding: 12px; border-radius: 10px; font-size: 1rem; font-weight: 500; color: #888; }
+.segment-control input:checked + span { background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 700; color: #000; }
+
+.action-buttons { display: flex; gap: 15px; margin-top: 30px; }
+button { cursor: pointer; border: none; font-size: 1.1rem; border-radius: 16px; padding: 16px; font-weight: 700; }
+.btn-primary { flex: 2; background: var(--ios-blue); color: white; }
+.btn-secondary { flex: 1; background: #e5e5ea; color: #333; }
+
+/* 테이블 스타일 (확장됨) */
+.table-container { 
+  flex: 1; overflow: auto; /* 가로 세로 스크롤 가능 */
+  background: rgba(255,255,255,0.5); border-radius: 20px; padding: 0 10px;
+}
+table { width: 100%; border-collapse: collapse; min-width: 800px; /* 테이블 최소 너비 보장 */ }
+th { 
+  position: sticky; top: 0; background: rgba(255,255,255,0.95); 
+  padding: 15px 10px; font-size: 1rem; color: #555; z-index: 5;
+  white-space: nowrap; /* 헤더 줄바꿈 방지 */
+}
+td { 
+  padding: 15px 10px; border-bottom: 1px solid rgba(0,0,0,0.05); 
+  text-align: center; font-size: 1rem; vertical-align: middle;
+}
+.badge { display: inline-block; padding: 6px 12px; background: rgba(0,122,255,0.1); color: var(--ios-blue); border-radius: 8px; font-size: 0.9rem; font-weight: 600; }
+
+@media (max-width: 1024px) {
+  .glass-container { flex-direction: column; width: 100vw; height: 100vh; border-radius: 0; }
+  .left-panel { flex: 0 0 auto; padding: 20px; }
+  .right-panel { border-radius: 30px 30px 0 0; }
+}
