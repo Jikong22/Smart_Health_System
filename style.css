@@ -36,11 +36,12 @@ body {
   display: flex;
   width: 96vw;          
   height: 94vh;         
-  /* max-width/height를 제거하여 전자칠판에서도 꽉 차게 만듦 */
+  max-height: 95vh;
   gap: 2vh;            
   align-items: stretch; /* 높이 꽉 채우기 */
   margin: auto;
   z-index: 1;
+  align-items: stretch;
 }
 
 /* ================= 왼쪽 패널 ================= */
@@ -128,8 +129,10 @@ body {
 .app-grid { 
   display: grid; 
   grid-template-columns: 1fr 1fr; 
-  gap: 3vh; 
-  height: 100%; align-content: center; /* 수직 중앙 정렬 */
+  gap: 20px; 
+  height: auto;      /* 높이를 내용물에 맞게 */
+  margin-top: auto;  /* 상하 중앙 배치를 위해 추가 */
+  margin-bottom: auto;
 }
 .app-icon-btn { 
   background: none; border: none; cursor: pointer; 
@@ -138,10 +141,14 @@ body {
 .app-icon-btn:active { transform: scale(0.95); }
 
 .icon-box {
-  width: 45vh; height: 45vh; /* 화면 높이의 25% 크기 */
+  position:absolute;
+  margin-top: -30vh;
+  width: 22vw; height: 45vw; /* 화면 높이의 25% 크기 */
+  max-width: 200px;
+  max-height: 200px;
   border-radius: 5vh;
   display: flex; align-items: center; justify-content: center;
-  font-size: 25vh; color: white; /* 아이콘 크기 */
+  font-size: 5rem; color: white; /* 아이콘 크기 */
   box-shadow: 0 1.5vh 3vh rgba(0,0,0,0.15);
 }
 .app-icon-btn.student .icon-box { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
