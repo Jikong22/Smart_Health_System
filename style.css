@@ -1,5 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
+@import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@700&display=swap');
 :root {
   --ios-blue: #007AFF;
   --ios-green: #34C759;
@@ -89,7 +89,7 @@ body {
 /* 날씨 위젯 */
 .weather-pill {
   position: absolute;
-  bottom: 8vh; left: 50%; transform: translateX(-50%);
+  bottom: 11vh; left: 50%; transform: translateX(-50%);
   display: flex; align-items: center; gap: 1vh;
   background: rgba(255, 255, 255, 0.5); padding: 2.5vh 4vh;
   border-radius: 5vh; border: 0.1vh solid rgba(255, 255, 255, 0.8);
@@ -98,14 +98,14 @@ body {
 
 /* ================= 오른쪽 패널 ================= */
 .right-panel {
-  flex: 1.2;
-  height: 100%;
+  flex: 1.7;
+  height: 85vh;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(40px);
   border-radius: 4vh; /* 모서리 둥글기도 비율로 */
   border: 0.1vh solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 2vh 6vh rgba(0,0,0,0.1);
-  padding: 4vh; 
+  padding: 10svh; 
   position: relative; overflow: hidden;
 }
 
@@ -212,4 +212,15 @@ td {
   .widget-number { font-size: 8vh; }
   .right-panel { flex: 0.65; width: 100%; border-radius: 4vh 4vh 0 0; padding: 3vh; }
   .icon-box { width: 18vh; height: 18vh; font-size: 8vh; }
+}
+
+.byCC {
+  color: rgb(37, 36, 36);
+  font-family: "Agdasima", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.7rem;
+  opacity: 0.8;
+  text-align: center;
+  margin-top: 0;
 }
