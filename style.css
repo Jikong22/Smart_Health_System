@@ -100,7 +100,7 @@ body {
 /* ================= 오른쪽 패널 ================= */
 .right-panel {
   flex: 1.7;
-  height: 85vh;
+  height: 70vh;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(40px);
   border-radius: 4vh; /* 모서리 둥글기도 비율로 */
@@ -131,7 +131,7 @@ body {
   grid-template-columns: 1fr 1fr; 
   gap: 20px; 
   height: auto;      /* 높이를 내용물에 맞게 */
-  margin-top: auto;  /* 상하 중앙 배치를 위해 추가 */
+  margin-top: 30vh;  /* 상하 중앙 배치를 위해 추가 */
   margin-bottom: auto;
 }
 .app-icon-btn { 
