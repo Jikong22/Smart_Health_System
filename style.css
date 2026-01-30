@@ -100,7 +100,7 @@ body {
 /* ================= 오른쪽 패널 ================= */
 .right-panel {
   flex: 1.7;
-  height: 70vh;
+  height: 80vh;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(40px);
   border-radius: 4vh; /* 모서리 둥글기도 비율로 */
