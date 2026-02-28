@@ -41,7 +41,7 @@
       
       <div id="view-login" class="view">
         <div style="margin-top: -3vh;" class="view-header">
-          <h3>안녕하세요! <br>원하는 메뉴를 선택하세요.</h3>
+          <h3>안녕하세요! <br>오늘도 좋은 하루 보내세요!</h3>
         </div>
         <div class="app-grid">
           <button class="app-icon-btn student" onclick="showView('view-student')">
@@ -99,8 +99,16 @@
               </select>
             </div>
             <textarea style="margin-top: 10px;" id="stDetail" rows="3" placeholder="구체적인 증상을 적어주세요"></textarea>
+
+            <div style="margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 2vh;">
+              <input type="checkbox" id="privacyAgree" style="width: 2vh; height: 2vh; cursor: pointer; margin: 0;">
+              <label for="privacyAgree" style="cursor: pointer; color: #555;">개인정보 수집 및 이용 동의</label>
+              <a href="#" onclick="showPrivacyPolicy()" style="color: #007AFF; font-weight: bold; text-decoration: none;">[내용 보기]</a>
+            </div>
+
           </div>
         </div>
+        
 
         <div style="margin-top: 10px; margin-bottom: -15px;" class="action-buttons">
           <button id="submit-btn" class="btn-primary" onclick="submitLog()">접수 완료</button>
@@ -112,8 +120,8 @@
         <div class="view-header row">
           <h3>진료 대기 현황</h3>
           <div class="mini-controls">
-            <button onclick="downloadCSV()" class="icon-btn" title="엑셀 다운로드"><i class="fa-solid fa-file-csv"></i></button>
-            <button onclick="location.reload()" class="icon-btn" title="로그아웃"><i class="fa-solid fa-right-from-bracket"></i></button>
+            <button onclick="downloadCSV()" class="icon-btn" title="엑셀 다운로드"><i class="fa-solid fa-file-csv" style="font-size: 2.8vh; transform: translate(0.55vh, 0vh);"></i></button>
+            <button onclick="location.reload()" class="icon-btn" title="로그아웃"><i class="fa-solid fa-right-from-bracket" style="font-size: 2.8vh; transform: translate(0.55vh, 0vh);"></i></button>
           </div>
         </div>
 
@@ -126,7 +134,9 @@
                 <th>이름</th>
                 <th>식사</th>
                 <th>알러지</th>
-                <th style="width: 80px;">증상</th> <th style="min-width: 140px;">자세한 증상</th> <th>처리</th>
+                <th style="width: 80px;">증상</th> 
+                <th style="min-width: 140px;">자세한 증상</th> 
+                <th style="min-width: 140px;">진료/처방 내역</th> <th>처리</th>
               </tr>
             </thead>
             <tbody id="log-body">
@@ -141,11 +151,25 @@
         </div>
         <input style="margin-top: 20px;" type="password" id="pw" placeholder="●●●●" maxlength="4" />
         <button style="margin-top: 40px; background-color: #007AFF; color: white;" onclick="adminLogin()">로그인</button>
+
+        <div style="margin-top: 30px; padding: 15px; font-size: 2vh; color: #ff5555; background: rgba(0,0,0,0.05); border-radius: 10px; text-align: center; border: 1px solid #ff5555; line-height: 1.5;">
+          <i class="fa-solid fa-triangle-exclamation"></i> <strong>보안 경고</strong><br>
+          관리자 페이지는 보건교사 전용입니다.<br>
+          무단 해킹 및 접근 시도 시, <strong>정보통신망법 제48조</strong>에 따라<br>
+          <strong>처벌</strong>받을 수 있습니다.
+        </div>
+        
         <button style="position: fixed; top: 60px; right: 20px;" onclick="location.reload()" class="icon-btn" title="로그아웃"><i class="fa-solid fa-right-from-bracket"></i></button>
       </div>
       
     </div> 
   </div> 
   <script src="script.js"></script>
+  <div id="custom-modal" class="modal-overlay hidden" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
+    <div class="modal-content" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); padding: 4vh 5vh; border-radius: 2vh; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); min-width: 300px;">
+      <p id="modal-message" style="font-size: 2vh; font-weight: bold; margin-bottom: 3vh; color: var(--text-dark); white-space: pre-line;"></p>
+      <button onclick="closeModal()" style="background: var(--ios-blue); color: white; border: none; padding: 1vh 3vh; border-radius: 1.5vh; font-size: 1.8vh; font-weight: bold; cursor: pointer;">확인</button>
+    </div>
+  </div>
 </body>
 </html>
