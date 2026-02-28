@@ -76,7 +76,8 @@ async function submitLog() {
     // 2. DB에 전송
     const { error } = await _supabase.from('health_logs').insert([{
         student_id: stId, name: stName, eat: food, allergy: allergy, 
-        symptom_cat: cat, symptom_detail: detail, status: 'waiting'
+        symptom_cat: cat, symptom_detail: detail, status: 'waiting',
+        is_agreed: true
     }]);
 
     if (error) {
