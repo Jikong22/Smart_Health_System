@@ -103,8 +103,10 @@ async function submitLog() {
 // 5. 관리자 목록 불러오기 (처방 내역 입력칸 추가)
 // ============================================================
 async function fetchLogs() {
+    // 💡 [수정됨] .select('*') 로 처리하면 모든 컬럼을 가져옵니다. 
+    // 만약 특정 컬럼만 가져오고 있다면 treatment_record를 명시해야 합니다.
     const { data, error } = await _supabase.from('health_logs')
-        .select('*')
+        .select('*') 
         .order('created_at', { ascending: false })
         .limit(50);
     
@@ -112,7 +114,7 @@ async function fetchLogs() {
 
     const body = document.getElementById('log-body');
 
-    // [현장 접수용 맨 윗줄] 진료/처방 내역 칸 추가
+    // [현장 접수용 맨 윗줄]
     const inputRow = `
         <tr style="background: rgba(0, 122, 255, 0.05);">
             <td style="font-weight:bold; color:var(--ios-blue);">현장 접수</td>
@@ -147,7 +149,7 @@ async function fetchLogs() {
         </tr>
     `;
 
-    // [기존 대기 학생 목록] 대기중이면 텍스트 입력창, 완료면 텍스트 출력
+    // [기존 대기 학생 목록]
     const dataRows = data.map(log => {
         const timeStr = new Date(log.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
         const eatDisplay = log.eat ? '<span style="color:blue; font-weight:bold;">O</span>' : '<span style="color:#ccc">X</span>';
@@ -179,21 +181,28 @@ async function fetchLogs() {
 }
 
 // ============================================================
-// 6. [수정됨] 완료 처리 (즉시 반영 로직 추가)
+// 6. [수정됨] 완료 처리 (처방 내역 DB 반영 로직 추가)
 // ============================================================
 async function completeLog(id) {
+    // 💡 [수정] 입력창에서 처방 내역 가져오기
+    const treatmentText = document.getElementById(`treat-${id}`).value;
+    
     if(!confirm("진료를 완료 처리하시겠습니까?")) return;
     
-    // 1. DB 업데이트
-    const { error } = await _supabase.from('health_logs').update({ status: 'done' }).eq('id', id);
+    // 1. DB 업데이트 (treatment_record 추가!)
+    const { error } = await _supabase
+        .from('health_logs')
+        .update({ 
+            status: 'done',
+            treatment_record: treatmentText // 👈 DB에 내역 저장!
+        })
+        .eq('id', id);
 
     if (error) {
-        alert("처리에 실패했습니다.");
+        alert("처리에 실패했습니다: " + error.message);
     } else {
-        // 2. [핵심] 성공했다면 강제로 화면 갱신 함수들을 호출합니다.
-        // 실시간 기능에만 의존하지 않고 직접 호출하여 딜레이를 없앱니다.
-        await fetchLogs(); // 리스트 갱신 (버튼을 '완료'로 바꿈)
-        await init();      // 대기 인원수 갱신 (왼쪽 숫자 줄임)
+        await fetchLogs(); // 리스트 갱신
+        await init();      // 대기 인원수 갱신
     }
 }
 
