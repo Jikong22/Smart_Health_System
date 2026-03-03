@@ -11,9 +11,10 @@ const _supabase = supabase.createClient(SB_URL, SB_KEY);
 const TIME_WEIGHTS = {
     '감기/발열': 5,
     '두통': 5,
-    '복통': 10,
-    '외상(상처)': 7,
-    '기타': 3
+    '복통': 5,
+    '외상(상처)': 5,
+    '근골격계': 5,
+    '기타': 5
 };
 
 // ============================================================
@@ -138,6 +139,7 @@ async function fetchLogs() {
                     <option value="두통">두통</option>
                     <option value="복통">복통</option>
                     <option value="외상(상처)">외상</option>
+                    <option value="근골격계">근골격계</option>
                     <option value="기타" selected>기타</option>
                 </select>
             </td>
