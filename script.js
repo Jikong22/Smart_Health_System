@@ -135,11 +135,18 @@ async function fetchLogs() {
             </td>
             <td>
                 <select id="directCat" style="padding: 0.5vh; border: 1px solid #ddd; border-radius: 0.5vh; font-size: 1.5vh; outline: none;">
-                    <option value="감기/발열">감기/발열</option>
-                    <option value="두통">두통</option>
-                    <option value="복통">복통</option>
-                    <option value="외상(상처)">외상</option>
+                    <option value="호흡기">호흡기</option>
+                    <option value="소화기">소화기</option>
+                    <option value="순환기">순환기</option>
+                    <option value="외상">외상</option>
+                    <option value="피부">피부</option>
                     <option value="근골격계">근골격계</option>
+                    <option value="비뇨생식기계">비뇨생식기계</option>
+                    <option value="신경정신계">신경정신계</option>
+                    <option value="이비인후과">이비인후과</option>
+                    <option value="안과">안과</option>
+                    <option value="구강">구강</option>
+                    <option value="기타">기타</option>
                     <option value="기타" selected>기타</option>
                 </select>
             </td>
